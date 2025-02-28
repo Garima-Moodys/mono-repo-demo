@@ -1,0 +1,7 @@
+/tmp/samcli/source/bin/Release/net6.0/publish/HelloWorld.dll
+/tmp/samcli/source/bin/Release/net6.0/publish/HelloWorld.deps.json
+/tmp/samcli/source/bin/Release/net6.0/publish/HelloWorld.runtimeconfig.json
+/tmp/samcli/source/bin/Release/net6.0/publish/HelloWorld.pdb
+/tmp/samcli/source/bin/Release/net6.0/publish/Amazon.Lambda.APIGatewayEvents.dll
+/tmp/samcli/source/bin/Release/net6.0/publish/Amazon.Lambda.Core.dll
+/tmp/samcli/source/bin/Release/net6.0/publish/Amazon.Lambda.Serialization.SystemTextJson.dll

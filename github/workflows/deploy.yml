@@ -1,0 +1,62 @@
+name: Deploy Lambda Functions
+
+on:
+  push:
+    branches:
+      - main  # Trigger the workflow on push to the 'main' branch
+  pull_request:
+    branches:
+      - main  # Trigger the workflow on pull requests to 'main'
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Checkout the repository
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      # Set up AWS credentials (store these as GitHub secrets)
+      - name: Set up AWS credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: us-east-1  # Adjust the region as per your need
+
+      # Install dependencies for SAM and any runtime dependencies
+      - name: Set up SAM CLI
+        run: |
+          sudo apt-get install -y python3-pip
+          pip3 install aws-sam-cli
+
+      # Identify changed function directories
+      - name: Identify changed functions
+        id: identify_changes
+        run: |
+          # Identify directories that were changed in the 'functions' folder
+          changed_functions=$(git diff --name-only HEAD^ HEAD functions/ | grep '/')
+          echo "changed_functions=$changed_functions" >> $GITHUB_ENV
+
+      # Loop through the changed functions, build and deploy them individually
+      - name: Build and Deploy changed functions
+        run: |
+          # Loop through each changed function
+          for func in $(echo ${{ env.changed_functions }} | tr " " "\n")
+          do
+            # Extract function name (assumes it's the folder name)
+            function_name=$(basename $func)
+            
+            # Build the specific function
+            echo "Building function: $function_name"
+            sam build $function_name
+
+            # Deploy the entire stack, but only the changed function will be updated
+            echo "Deploying function: $function_name"
+            sam deploy 
+
+            # Clean up the aws-sam directory to avoid clutter
+            echo "Cleaning up build artifacts for function: $function_name"
+            rm -rf aws-sam
+          done

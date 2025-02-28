@@ -1,0 +1,63 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: >
+  demo-monorepo
+
+  Sample SAM Template for demo-monorepo
+
+
+
+# More info about Globals: https://github.com/awslabs/serverless-application-model/blob/master/docs/globals.rst
+Globals:
+  Function:
+    Timeout: 3
+    MemorySize: 128
+    # Role: arn:aws:iam::123456789012:role/MyDefaultLambdaExecutionRole  # Global role for all functions
+    Environment:
+      Variables:
+        GLOBAL_VAR: "This is a global variable"
+
+
+Resources:
+  HelloWorldFunction:
+    Type: AWS::Serverless::Function # More info about Function Resource: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlessfunction
+    Properties:
+      CodeUri: functions/function1
+      Handler: function1.lambda_handler
+      Runtime: python3.13
+      Architectures:
+        - x86_64
+  HelloWorldFunction1:
+    Type: AWS::Serverless::Function # More info about Function Resource: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlessfunction
+    Properties:
+      CodeUri: functions/function2
+      Handler: function2.lambda_handler
+      Runtime: python3.11
+      Architectures:
+        - x86_64
+  HelloWorldFunction2:
+    Type: AWS::Serverless::Function # More info about Function Resource: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlessfunction
+    Properties:
+      CodeUri: functions/function3
+      Handler: function3.lambda_handler
+      Runtime: python3.12
+      Architectures:
+        - x86_64
+  HelloWorldFunction3:
+    Type: AWS::Serverless::Function # More info about Function Resource: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlessfunction
+    Properties:
+      CodeUri: functions/function4
+      Handler: HelloWorld::HelloWorld.Function::FunctionHandler
+      Runtime: dotnet6
+      Architectures:
+        - x86_64
+  HelloWorldFunction4:
+    Type: AWS::Serverless::Function # More info about Function Resource: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlessfunction
+    Properties:
+      CodeUri: functions/function5
+      Handler: helloworld.App::handleRequest
+      Runtime: java17
+      Architectures:
+        - x86_64
+
+

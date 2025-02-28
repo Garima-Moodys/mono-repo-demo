@@ -1,0 +1,14 @@
+/tmp/samcli/source/bin/Release/net6.0/linux-x64/HelloWorld.deps.json
+/tmp/samcli/source/bin/Release/net6.0/linux-x64/HelloWorld.runtimeconfig.json
+/tmp/samcli/source/bin/Release/net6.0/linux-x64/HelloWorld.dll
+/tmp/samcli/source/bin/Release/net6.0/linux-x64/HelloWorld.pdb
+/tmp/samcli/source/obj/Release/net6.0/linux-x64/HelloWorld.csproj.AssemblyReference.cache
+/tmp/samcli/source/obj/Release/net6.0/linux-x64/HelloWorld.GeneratedMSBuildEditorConfig.editorconfig
+/tmp/samcli/source/obj/Release/net6.0/linux-x64/HelloWorld.AssemblyInfoInputs.cache
+/tmp/samcli/source/obj/Release/net6.0/linux-x64/HelloWorld.AssemblyInfo.cs
+/tmp/samcli/source/obj/Release/net6.0/linux-x64/HelloWorld.csproj.CoreCompileInputs.cache
+/tmp/samcli/source/obj/Release/net6.0/linux-x64/HelloWorld.dll
+/tmp/samcli/source/obj/Release/net6.0/linux-x64/refint/HelloWorld.dll
+/tmp/samcli/source/obj/Release/net6.0/linux-x64/HelloWorld.pdb
+/tmp/samcli/source/obj/Release/net6.0/linux-x64/HelloWorld.genruntimeconfig.cache
+/tmp/samcli/source/obj/Release/net6.0/linux-x64/ref/HelloWorld.dll
