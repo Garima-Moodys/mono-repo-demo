@@ -39,8 +39,8 @@ jobs:
           changed_functions=$(git diff --name-only HEAD^ HEAD functions/ | grep '/')
           echo "changed_functions=$changed_functions" >> $GITHUB_ENV
 
-      # Loop through the changed functions, build and deploy them individually
-      - name: Build and Deploy changed functions
+      # Loop through the changed functions, build them individually and deploy them
+      - name: Build changed functions and deploy them
         run: |
           # Loop through each changed function
           for func in $(echo ${{ env.changed_functions }} | tr " " "\n")
@@ -50,13 +50,7 @@ jobs:
             
             # Build the specific function
             echo "Building function: $function_name"
-            sam build $function_name
-
-            # Deploy the entire stack, but only the changed function will be updated
-            echo "Deploying function: $function_name"
-            sam deploy 
-
-            # Clean up the aws-sam directory to avoid clutter
-            echo "Cleaning up build artifacts for function: $function_name"
-            rm -rf aws-sam
+            sam build $function_name --use-container
           done
+          sam deploy 
+
